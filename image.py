@@ -5,7 +5,6 @@ import json
 from PIL import Image
 from StringIO import StringIO
 from datetime import date
-# import pdb; pdb.set_trace()
 
 
 class Grass:
@@ -44,7 +43,6 @@ class Grass:
     def create_image(self):
         req = requests.get(self.url)
         img = Image.open(StringIO(req.content))
-        img.show()
         return img
 
     def grass(self):
