@@ -1,6 +1,11 @@
 # Space apps challenge 2016
 
 ## image.py
+### Run
+```zsh
+python image.py <lon> <lat>
+```
+
 ### Requirements python
 ```zsh
 mccabe (0.4.0)
@@ -32,6 +37,8 @@ wheel (0.29.0)
   "date": "2014-02-04T03:30:01"
 }
 ```
+```zsh
 grass = float 0-1   # percent of grass
 erro = float 0-1    # percent of error (cloud hiding the location)
 date = string       # last inforeceived
+```

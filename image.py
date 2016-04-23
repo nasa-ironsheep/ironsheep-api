@@ -1,3 +1,4 @@
+import sys
 import requests
 import json
 
@@ -43,19 +44,28 @@ class Grass:
     def create_image(self):
         req = requests.get(self.url)
         img = Image.open(StringIO(req.content))
+        img.show()
         return img
 
     def grass(self):
         img = self.create_image()
+        pix = img.load()
+        green = 0
+        for i in range(0, img.width):
+            for j in range(0, img.height):
+                if pix[i, j][0] < pix[i, j][1] and pix[i, j][2] < pix[i, j][1]:
+                    green += 1
+
+        percent = float(green)/(img.width*img.height)
 
         params = {
-                "grass": 1.0,
+                "grass": percent,
                 "erro": self.cloud_score,
                 "date": self.date
                 }
-        return params
+        return json.dumps(params)
 
 
 if __name__ == "__main__":
-    grass = Grass()
+    grass = Grass(lon=sys.argv[1], lat=sys.argv[2])
     print grass.grass()
