@@ -17,14 +17,14 @@ wheel (0.29.0)
 ### Request
 | name  | type  | default  |  needed  |
 |:-:|:-:|:-:|:-:|
-| url  | string  | https://api.nasa.gov/planetary/earth/imagery  | no  |
+| api_url  | string  | https://api.nasa.gov/planetary/earth/imagery  | no  |
 | lon  | float  | 100.75  | yes  |
 | lat  | float  | 1.5  | yes  |
 | date  | string  | 2014-02-01  | yes  |
-| cloud_score  | boolean  | True  |  no |
+| cloud  | boolean  | True  |  no |
 | api_key  | string  | "xxxxxxxxxxxxxxx"  |  no |
 
 ### Response
 ```zsh
-float 0-11    # percent of grass
+float 0-1    # percent of grass
 ```

@@ -8,15 +8,15 @@ from StringIO import StringIO
 
 
 class Grass:
-    url = "https://api.nasa.gov/planetary/earth/imagery"
+    api_url = "https://api.nasa.gov/planetary/earth/imagery"
     lon = 100.75
     lat = 1.5
     date = "2014-02-01"
-    cloud_score = True
+    cloud = True
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
-            getattr(self, key, value)
+            setattr(self, key, value)
 
         with open("config.json") as json_file:
                 json_data = json.load(json_file)
@@ -24,26 +24,37 @@ class Grass:
                     if key == "api_key":
                         self.api_key = value
 
-        self.params = {
+        params = {
                 "lon": self.lon,
                 "lat": self.lat,
                 "date": self.date,
-                "cloud_score": self.cloud_score,
+                "cloud_score": self.cloud,
                 "api_key": self.api_key
                 }
-        self.create_image()
+        self.api(params)
 
-    def api(self):
-        req = requests.get(self.url, params=self.params)
-        data = json.loads(req.text)
+    def api(self, params):
+        req = requests.get(self.api_url, params=params)
+        data = json.loads(req.content)
         for key, value in data.items():
-            if key == "url":
-                return value
+            if key == "url" or key == "cloud_score":
+                setattr(self, key, value)
 
     def create_image(self):
-        req = requests.get(self.api())
-        im = Image.open(StringIO(req.content))
+        req = requests.get(self.url)
+        img = Image.open(StringIO(req.content))
+        return img
+
+    def grass(self):
+        img = self.create_image()
+        return 1.0
+
+    def percent(self):
+        level_grass = 1 - self.cloud_score
         # import pdb; pdb.set_trace()
+        return self.grass()/level_grass
+
 
 if __name__ == "__main__":
     grass = Grass()
+    print grass.percent()
