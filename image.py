@@ -49,6 +49,7 @@ def greet(lon, lat):
     # return {'c':url}
     req2 = requests.get(url)
     img = Image.open(StringIO(req2.content))
+    img.show()
 
     pix = img.load()
     green = 0

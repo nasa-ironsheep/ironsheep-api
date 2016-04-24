@@ -59,7 +59,7 @@ public class RutaService {
 
 		Weather weatherAverage = new Weather();
 		weatherAverage.setMain(weathers.get(0).getMain());
-		weatherAverage.setTemp(tempAverage / weathers.size());
+		weatherAverage.setTemp((tempAverage / weathers.size()) - 273.15);
 		weatherAverage.setPressure(pressureAverage / weathers.size());
 		weatherAverage.setHumidity(humidityAverage / weathers.size());
 		weatherAverage.setWindSpeed(windSpeedAverage / weathers.size());
