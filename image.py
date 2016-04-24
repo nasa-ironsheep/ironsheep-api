@@ -66,4 +66,12 @@ class Grass:
 
 if __name__ == "__main__":
     grass = Grass(lon=sys.argv[1], lat=sys.argv[2])
-    print grass.grass()
+    #print grass.grass()
+    try:
+        file = open('green.json','w')   # Trying to create a new file or open one
+        file.write(grass.grass())
+        file.close()
+
+    except:
+        print('Something went wrong! Can\'t tell what?')
+        sys.exit(0) # quit Python

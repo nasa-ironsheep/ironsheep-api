@@ -1,4 +1,4 @@
-package es.aragon.ironsheep.entities;
+package es.aragon.ironsheep.service.entities;
 
 public class RutaRequest {
 
@@ -6,11 +6,11 @@ public class RutaRequest {
 
 	private int animals;
 
-	private String latOrigin;
-	private String lngOrigin;
+	private double latOrigin;
+	private double lngOrigin;
 
-	private String latDestination;
-	private String lngDestination;
+	private double latDestination;
+	private double lngDestination;
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -28,35 +28,35 @@ public class RutaRequest {
 		this.animals = animals;
 	}
 
-	public String getLatOrigin() {
+	public double getLatOrigin() {
 		return latOrigin;
 	}
 
-	public void setLatOrigin(String latOrigin) {
+	public void setLatOrigin(double latOrigin) {
 		this.latOrigin = latOrigin;
 	}
 
-	public String getLngOrigin() {
+	public double getLngOrigin() {
 		return lngOrigin;
 	}
 
-	public void setLngOrigin(String lngOrigin) {
+	public void setLngOrigin(double lngOrigin) {
 		this.lngOrigin = lngOrigin;
 	}
 
-	public String getLatDestination() {
+	public double getLatDestination() {
 		return latDestination;
 	}
 
-	public void setLatDestination(String latDestination) {
+	public void setLatDestination(double latDestination) {
 		this.latDestination = latDestination;
 	}
 
-	public String getLngDestination() {
+	public double getLngDestination() {
 		return lngDestination;
 	}
 
-	public void setLngDestination(String lngDestination) {
+	public void setLngDestination(double lngDestination) {
 		this.lngDestination = lngDestination;
 	}
 

@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <property name="context-root" value="PASTOREO-SERVER"/>
         <property name="java-output-path" value="/PASTOREO-SERVER/target/classes"/>
+        <property name="context-root" value="IRONSHEEP-SERVER"/>
     </wb-module>
 </project-modules>
