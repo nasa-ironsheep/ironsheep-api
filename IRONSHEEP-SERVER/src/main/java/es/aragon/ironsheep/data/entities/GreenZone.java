@@ -1,16 +1,15 @@
 package es.aragon.ironsheep.data.entities;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.json.JSONObject;
 
 public class GreenZone {
 
 	private double grass;
 	private double erro;
-	private Date date;
+	private String date;
+
+	public GreenZone() {
+	}
 
 	public GreenZone(JSONObject json) {
 		try {
@@ -20,8 +19,7 @@ public class GreenZone {
 				this.erro = json.getDouble("erro");
 			}
 
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-			this.date = df.parse(json.getString("date"));
+			this.date = json.getString("date");
 
 		} catch (Exception e) {
 			System.out.println("Green Zone not found");
@@ -46,11 +44,11 @@ public class GreenZone {
 		this.erro = erro;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

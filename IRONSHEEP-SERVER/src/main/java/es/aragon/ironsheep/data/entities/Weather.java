@@ -9,6 +9,9 @@ public class Weather {
 	private double humidity;
 	private double windSpeed;
 
+	public Weather() {
+	}
+
 	public Weather(JSONObject json) {
 		try {
 			this.main = json.getJSONArray("weather").getJSONObject(0).getString("main");

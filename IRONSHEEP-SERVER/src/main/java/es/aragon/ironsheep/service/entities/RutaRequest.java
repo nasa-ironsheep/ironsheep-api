@@ -2,62 +2,23 @@ package es.aragon.ironsheep.service.entities;
 
 public class RutaRequest {
 
-	private String phoneNumber;
+	private double lat;
+	private double lng;
 
-	private int animals;
-
-	private double latOrigin;
-	private double lngOrigin;
-
-	private double latDestination;
-	private double lngDestination;
-
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public double getLat() {
+		return lat;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
-	public int getAnimals() {
-		return animals;
+	public double getLng() {
+		return lng;
 	}
 
-	public void setAnimals(int animals) {
-		this.animals = animals;
-	}
-
-	public double getLatOrigin() {
-		return latOrigin;
-	}
-
-	public void setLatOrigin(double latOrigin) {
-		this.latOrigin = latOrigin;
-	}
-
-	public double getLngOrigin() {
-		return lngOrigin;
-	}
-
-	public void setLngOrigin(double lngOrigin) {
-		this.lngOrigin = lngOrigin;
-	}
-
-	public double getLatDestination() {
-		return latDestination;
-	}
-
-	public void setLatDestination(double latDestination) {
-		this.latDestination = latDestination;
-	}
-
-	public double getLngDestination() {
-		return lngDestination;
-	}
-
-	public void setLngDestination(double lngDestination) {
-		this.lngDestination = lngDestination;
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 
 }
