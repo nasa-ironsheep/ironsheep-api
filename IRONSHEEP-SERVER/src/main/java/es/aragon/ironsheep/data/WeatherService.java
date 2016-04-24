@@ -19,6 +19,7 @@ public class WeatherService {
 	public Weather getCurrentWeather(double lng, double lat) {
 		
 		String response = callRequest(lng, lat);
+		System.out.println("WEATHER:");
 		System.out.println(response);
 		JSONObject jsonObj = new JSONObject(response);
 		

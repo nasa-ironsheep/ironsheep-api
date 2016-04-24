@@ -25,7 +25,7 @@ cloud_score = 0.1
 date = ""
 
 @app.route('/')
-@app.route('/<float:lon>/<float:lat>')
+@app.route('/<lon>/<lat>')
 @mimerender(
     default = 'json',
     json = render_json

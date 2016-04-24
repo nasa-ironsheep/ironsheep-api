@@ -18,19 +18,13 @@ public class RutaService {
 	@Produces("application/json")
 	public RutaResponse getRuta(RutaRequest request) {
 		RutaResponse response = new RutaResponse();
-		
+
 		WeatherService weatherService = new WeatherService();
-		
-		try {
-			response.setGreenZone(
-					GreenZoneService.getGreenZone(request.getLngDestination(), request.getLatDestination()));
-			System.out.println("OK");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		GreenZoneService greenZoneService = new GreenZoneService();
+
+		response.setGreenZone(greenZoneService.getGreenZone(request.getLngDestination(), request.getLatDestination()));
+
 		response.setWeather(weatherService.getCurrentWeather(request.getLngDestination(), request.getLatDestination()));
-		
 
 		return response;
 	}
