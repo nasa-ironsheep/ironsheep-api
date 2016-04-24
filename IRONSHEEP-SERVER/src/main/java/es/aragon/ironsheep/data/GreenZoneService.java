@@ -53,12 +53,37 @@ public class GreenZoneService {
 //		}
 
 //		 try {
-//		 Process p = Runtime.getRuntime().exec("python c:/git/backend/image.py 100.75 1.5");
+//			 Runtime rt = Runtime.getRuntime();
+////			 rt.exec("cmd /c start \"\" \"myshortcut.lnk\"");
+//		 Process p = Runtime.getRuntime().exec("cmd /c mkdir c:/1234");
 //		 } catch (IOException e) {
 //		 // TODO Auto-generated catch block
 //		 e.printStackTrace();
 //		 }
+		
+//		System.out.println("PYTHON");
+//		ProcessBuilder pb = new ProcessBuilder(
+//			    "python", PYTHON_SCRIPT, "100.5 1.5"
+//			);
+//			Process ps = pb.start();
+//
+//			BufferedReader reader = new BufferedReader(
+//			    new InputStreamReader(ps.getInputStream())
+//			);
+//
+//			ps.waitFor();
+//			int ec = ps.exitValue();
+//			StringBuffer HTTPResponse = new StringBuffer();
+//			String inputLine;
+//
+//			while ((inputLine = reader.readLine()) != null) {
+//				System.out.println(inputLine);
+////			        logger.debug(String.format("DEBUG!!!: input = %s", inputLine));
+//			        HTTPResponse.append(inputLine);
+//			}
 
+		executeAsAdministrator("mkdir c:/1234", "");
+		
 		return response;
 
 	}
