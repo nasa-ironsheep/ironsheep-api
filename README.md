@@ -1,17 +1,16 @@
 # Space apps challenge 2016
 
 ## image.py
-### Run
+### Install
 ```zsh
-python image.py <lon> <lat>
+pip install -r requirements.txt
 ```
 
-### Requirements python
+### Run
 ```zsh
-Pillow (3.2.0)
-pip (8.1.1)
-requests (2.9.1)
+python image.py
 ```
+
 ### Request
 | name  | type  | default  |  needed  |
 |:-:|:-:|:-:|:-:|
@@ -21,6 +20,11 @@ requests (2.9.1)
 | today | string  | YYYY-MM-DD(today)  | no  |
 | cloud  | boolean  | True  |  no |
 | api_key  | string  | "xxxxxxxxxxxxxxx"  |  no |
+```zsh
+curl http://127.0.0.1:5000/<lng>/<lat>
+# Demo
+curl http://127.0.0.1:5000/41.661414/-0.7776972
+```
 
 ### Response
 ```json
