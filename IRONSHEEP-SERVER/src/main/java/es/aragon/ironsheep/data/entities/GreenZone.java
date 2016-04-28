@@ -2,15 +2,29 @@ package es.aragon.ironsheep.data.entities;
 
 import org.json.JSONObject;
 
+/**
+ * POJO for storage an GreenZone Object
+ * 
+ * @author ARTURO
+ */
 public class GreenZone {
 
 	private double grass;
 	private double erro;
 	private String date;
 
+	/**
+	 * Basic constructor
+	 */
 	public GreenZone() {
 	}
 
+	/**
+	 * Constructor based on a JSONObject
+	 * 
+	 * @param json
+	 *            JSON with GreenZone values
+	 */
 	public GreenZone(JSONObject json) {
 		try {
 			this.grass = json.getDouble("grass");

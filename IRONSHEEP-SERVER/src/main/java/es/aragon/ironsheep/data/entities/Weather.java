@@ -2,6 +2,12 @@ package es.aragon.ironsheep.data.entities;
 
 import org.json.JSONObject;
 
+/**
+ * POJO for storage an Weather Object
+ * 
+ * @author ARTURO
+ *
+ */
 public class Weather {
 	private String main;
 	private double temp;
@@ -9,13 +15,24 @@ public class Weather {
 	private double humidity;
 	private double windSpeed;
 
+	/**
+	 * Basic constructor
+	 */
 	public Weather() {
 	}
 
+	/**
+	 * Constructor based on a JSONObject
+	 * 
+	 * @param json
+	 *            JSON with Weather values
+	 */
 	public Weather(JSONObject json) {
 		try {
-			this.main = json.getJSONArray("weather").getJSONObject(0).getString("main");
-			this.temp = json.getJSONObject("main").getDouble("temp");
+			this.main = json.getJSONArray("weather").getJSONObject(0)
+					.getString("main");
+			// parse to celsius
+			this.temp = json.getJSONObject("main").getDouble("temp") - 273.15;
 			this.pressure = json.getJSONObject("main").getDouble("pressure");
 			this.humidity = json.getJSONObject("main").getDouble("humidity");
 			this.windSpeed = json.getJSONObject("wind").getDouble("speed");

@@ -11,15 +11,35 @@ import org.json.JSONObject;
 
 import es.aragon.ironsheep.data.entities.GreenZone;
 
+/**
+ * Obtains the percent of green zones for a point
+ * 
+ * @author ARTURO
+ *
+ */
 public class GreenZoneService {
+	/**
+	 * URL where is placed the GreenZones Service
+	 */
 	public String SERVICE_URL = "http://localhost:5000";
 
+	/**
+	 * Obtains the statistics of GreenZone for a point
+	 * 
+	 * @param lng
+	 *            Longitude of the point
+	 * @param lat
+	 *            Latitude of the point
+	 * @return Object with the point statistic's
+	 */
 	public GreenZone getGreenZone(double lng, double lat) {
-
 		String response = callRequest(lng, lat);
+
+		// Provisional log TODO add log4j
 		System.out.println("GREEN ZONES:");
 		System.out.println(response);
 
+		// Parse the String response to JSON
 		JSONObject jsonObj = new JSONObject(response);
 
 		GreenZone greenZone = new GreenZone(jsonObj);
@@ -28,6 +48,15 @@ public class GreenZoneService {
 
 	}
 
+	/**
+	 * Call the rest service who obtains the point statistic's
+	 * 
+	 * @param lng
+	 *            Longitude of the point
+	 * @param lat
+	 *            Latitude of the point
+	 * @return String returned in the rest service
+	 */
 	private String callRequest(double lng, double lat) {
 		String response = "";
 		try {
@@ -43,10 +72,12 @@ public class GreenZoneService {
 			conn.setRequestProperty("Accept", "application/json");
 
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
 			}
 
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
 
 			String output;
 			while ((output = br.readLine()) != null) {
