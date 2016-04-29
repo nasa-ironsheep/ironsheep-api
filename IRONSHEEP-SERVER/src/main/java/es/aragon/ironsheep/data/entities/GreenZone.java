@@ -1,5 +1,6 @@
 package es.aragon.ironsheep.data.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.json.JSONObject;
 
 /**
@@ -8,6 +9,9 @@ import org.json.JSONObject;
  * @author ARTURO
  */
 public class GreenZone {
+
+	@JsonIgnore
+	private boolean find = false;
 
 	private double grass;
 	private double erro;
@@ -26,18 +30,20 @@ public class GreenZone {
 	 *            JSON with GreenZone values
 	 */
 	public GreenZone(JSONObject json) {
-		try {
-			this.grass = json.getDouble("grass");
+		if (json != null) {
+			try {
+				this.grass = json.getDouble("grass");
 
-			if (!json.isNull("erro")) {
-				this.erro = json.getDouble("erro");
+				if (!json.isNull("erro")) {
+					this.erro = json.getDouble("erro");
+				}
+
+				this.date = json.getString("date");
+				this.find = true;
+			} catch (Exception e) {
+				System.out.println("Green Zone not found");
+				e.printStackTrace();
 			}
-
-			this.date = json.getString("date");
-
-		} catch (Exception e) {
-			System.out.println("Green Zone not found");
-			e.printStackTrace();
 		}
 
 	}
@@ -64,6 +70,14 @@ public class GreenZone {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public boolean isFind() {
+		return find;
+	}
+
+	public void setFind(boolean find) {
+		this.find = find;
 	}
 
 }

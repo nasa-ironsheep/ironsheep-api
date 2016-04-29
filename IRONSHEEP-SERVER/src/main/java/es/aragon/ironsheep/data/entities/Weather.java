@@ -1,5 +1,6 @@
 package es.aragon.ironsheep.data.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.json.JSONObject;
 
 /**
@@ -9,6 +10,9 @@ import org.json.JSONObject;
  *
  */
 public class Weather {
+	@JsonIgnore
+	private boolean find = false;
+
 	private String main;
 	private double temp;
 	private double pressure;
@@ -28,16 +32,21 @@ public class Weather {
 	 *            JSON with Weather values
 	 */
 	public Weather(JSONObject json) {
-		try {
-			this.main = json.getJSONArray("weather").getJSONObject(0)
-					.getString("main");
-			// parse to celsius
-			this.temp = json.getJSONObject("main").getDouble("temp") - 273.15;
-			this.pressure = json.getJSONObject("main").getDouble("pressure");
-			this.humidity = json.getJSONObject("main").getDouble("humidity");
-			this.windSpeed = json.getJSONObject("wind").getDouble("speed");
-		} catch (Exception e) {
-			System.out.println("Weather not found");
+		if (json != null) {
+			try {
+				this.main = json.getJSONArray("weather").getJSONObject(0)
+						.getString("main");
+				// parse to celsius
+				this.temp = json.getJSONObject("main").getDouble("temp") - 273.15;
+				this.pressure = json.getJSONObject("main")
+						.getDouble("pressure");
+				this.humidity = json.getJSONObject("main")
+						.getDouble("humidity");
+				this.windSpeed = json.getJSONObject("wind").getDouble("speed");
+				this.find = true;
+			} catch (Exception e) {
+				System.out.println("Weather not found");
+			}
 		}
 
 	}
@@ -80,6 +89,14 @@ public class Weather {
 
 	public void setWindSpeed(double windSpeed) {
 		this.windSpeed = windSpeed;
+	}
+
+	public boolean isFind() {
+		return find;
+	}
+
+	public void setFind(boolean find) {
+		this.find = find;
 	}
 
 }

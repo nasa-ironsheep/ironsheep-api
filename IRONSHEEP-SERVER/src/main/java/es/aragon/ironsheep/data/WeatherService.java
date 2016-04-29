@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import es.aragon.ironsheep.data.entities.Weather;
@@ -46,7 +47,12 @@ public class WeatherService {
 		System.out.println(response);
 
 		// Parse the String response to JSON
-		JSONObject jsonObj = new JSONObject(response);
+		JSONObject jsonObj = null;
+		try {
+			jsonObj = new JSONObject(response);
+		} catch (JSONException e) {
+			System.out.println("Error generating JSONObject");
+		}
 
 		Weather weather = new Weather(jsonObj);
 		return weather;

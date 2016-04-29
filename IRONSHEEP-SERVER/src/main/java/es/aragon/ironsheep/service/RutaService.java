@@ -39,10 +39,21 @@ public class RutaService {
 
 		// Query the statistics for each point TODO add threads
 		for (RutaRequest point : request) {
-			greenZones.add(greenZoneService.getGreenZone(point.getLng(),
-					point.getLat()));
-			weathers.add(weatherService.getCurrentWeather(point.getLng(),
-					point.getLat()));
+			// Search green zone
+			GreenZone greenZone = greenZoneService.getGreenZone(point.getLng(),
+					point.getLat());
+			// Add green zone if the service find it
+			if (greenZone.isFind()) {
+				greenZones.add(greenZone);
+			}
+
+			// Search Weather
+			Weather weather = weatherService.getCurrentWeather(point.getLng(),
+					point.getLat());
+			// Add weather if the service find it
+			if (weather.isFind()) {
+				weathers.add(weather);
+			}
 		}
 
 		// Calculate the average statistics of points
@@ -80,15 +91,20 @@ public class RutaService {
 
 		}
 
-		// New Weather with averages values
-		Weather weatherAverage = new Weather();
-		weatherAverage.setMain(weathers.get(0).getMain());
-		weatherAverage.setTemp((tempAverage / weathers.size()));
-		weatherAverage.setPressure(pressureAverage / weathers.size());
-		weatherAverage.setHumidity(humidityAverage / weathers.size());
-		weatherAverage.setWindSpeed(windSpeedAverage / weathers.size());
+		if (weathers.size() > 0) {
+			// New Weather with averages values
+			Weather weatherAverage = new Weather();
+			weatherAverage.setMain(weathers.get(0).getMain());
+			weatherAverage.setTemp((tempAverage / weathers.size()));
+			weatherAverage.setPressure(pressureAverage / weathers.size());
+			weatherAverage.setHumidity(humidityAverage / weathers.size());
+			weatherAverage.setWindSpeed(windSpeedAverage / weathers.size());
 
-		average.setWeather(weatherAverage);
+			average.setWeather(weatherAverage);
+		} else {
+			// If there are 0 weathers return empty Weather
+			average.setWeather(new Weather());
+		}
 
 		// GREEEN ZONE
 		double grassAverage = 0;
@@ -100,13 +116,18 @@ public class RutaService {
 			erroAverage += greenZone.getErro();
 		}
 
-		// New GreenZone with averages values
-		GreenZone greenZoneAverage = new GreenZone();
-		greenZoneAverage.setGrass(grassAverage / greenZones.size());
-		greenZoneAverage.setErro(erroAverage / greenZones.size());
-		greenZoneAverage.setDate(greenZones.get(0).getDate());
+		if (greenZones.size() > 0) {
+			// New GreenZone with averages values
+			GreenZone greenZoneAverage = new GreenZone();
+			greenZoneAverage.setGrass(grassAverage / greenZones.size());
+			greenZoneAverage.setErro(erroAverage / greenZones.size());
+			greenZoneAverage.setDate(greenZones.get(0).getDate());
 
-		average.setGreenZone(greenZoneAverage);
+			average.setGreenZone(greenZoneAverage);
+		} else {
+			// If there are 0 green zones return empty Green Zone
+			average.setGreenZone(new GreenZone());
+		}
 
 		return average;
 	}
